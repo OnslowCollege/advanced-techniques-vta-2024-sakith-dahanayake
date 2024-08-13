@@ -81,7 +81,6 @@ class Question:
         self.multi_yes = Radiobutton(multi_frame, variable=self.multiVar, text="Yes", height=1, anchor="w", value=1, font=("Ariel",12))
         self.multi_no = Radiobutton(multi_frame, variable=self.multiVar, text="No", height=1, anchor="w", value=0, font=("Ariel",12))
         
-
         button_frame = Frame(self.main_frame, width=780, height=100)
         button_frame.grid(row=6, column=0, padx=5, pady=5)
         button_exit = Button(button_frame, text="Skip", command=lambda:on_continue(i))

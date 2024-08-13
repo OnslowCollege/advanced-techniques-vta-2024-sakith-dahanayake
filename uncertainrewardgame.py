@@ -129,7 +129,6 @@ def on_continue(i):
         pageList[len(pageList)-1].main_frame.grid_remove()
         last_page(root).tkraise()
 
-    
 root = Tk()
 
 root.minsize(800,400)

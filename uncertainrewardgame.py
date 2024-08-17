@@ -61,7 +61,6 @@ def help_page(base):
     main_frame.grid(row=0, column=0, padx=5, pady=5)
     return main_frame
 
-
 class Question:
     def __init__(self,base,q,i):
         self.q = q

@@ -25,6 +25,8 @@ def home_page(base):
     button_exit.pack(side="left")
     button_continue = Button(button_frame, text="Continue",command=on_continueFirst)
     button_continue.pack(side="right")
+    button_help = Button(button_frame, text="Help", command=on_showhelp)
+    button_help.pack(side="right")
     main_frame.grid(row=0, column=0, padx=5, pady=5)
     return main_frame
 
@@ -40,6 +42,25 @@ def last_page(base):
     button_exit.pack(side="left")
     main_frame.grid(row=0, column=0, padx=5, pady=5)
     return main_frame
+
+def help_page(base):
+    main_frame = Frame(base, width=800, height=400)
+    content_frame = Frame(main_frame, width=780, height=280)
+    content_frame.grid(row=7, column=0, padx=5, pady=5)
+    Label(main_frame, text="Help", font=(14)).grid(row=1, column=0, padx=5, pady=5)
+    Label(content_frame, text="a. There are 6 questions in this game and you can navigate throughout the game using the continue button.", width=100, height=2,anchor="w",justify="left").grid(row=2, column=0, padx=5, pady=5)
+    Label(content_frame, text="b. If you want don't know the answer to any question or don't want to answer it you can press the skip button and go to the next question.", width=100, height=2,anchor="w",justify="left").grid(row=3, column=0, padx=5, pady=5)
+    Label(content_frame, text="c. Once you've answered a question, the program will show you if your answer is right or wrong.", width=100, height=2,anchor="w",justify="left").grid(row=4, column=0, padx=5, pady=5)
+    Label(content_frame, text="d. Once you've answered a question you'll also get another message asking if you'd want to double your points for the next question.", width=100, height=2,anchor="w",justify="left").grid(row=5, column=0, padx=5, pady=5)
+    Label(content_frame, text="e. If you press yes for the multiplier question you will earn 2 points instead of 1 for your next question if you get it right.", width=100, height=2,anchor="w",justify="left").grid(row=6, column=0, padx=5, pady=5)
+    Label(content_frame, text="f. If you press yes for the multipler question and get your answer wrong you will not gain any points.", width=100, height=3,anchor="w",justify="left").grid(row=7, column=0, padx=5, pady=5)
+    button_frame = Frame(main_frame, width=780, height=100)
+    button_frame.grid(row=8, column=0, padx=5, pady=5)
+    button_close = Button(button_frame, text="Close", command=lambda:help.grid_remove())
+    button_close.pack(side="left")
+    main_frame.grid(row=0, column=0, padx=5, pady=5)
+    return main_frame
+
 
 class Question:
     def __init__(self,base,q,i):
@@ -81,6 +102,7 @@ class Question:
         self.multi_yes = Radiobutton(multi_frame, variable=self.multiVar, text="Yes", height=1, anchor="w", value=1, font=("Ariel",12))
         self.multi_no = Radiobutton(multi_frame, variable=self.multiVar, text="No", height=1, anchor="w", value=0, font=("Ariel",12))
         
+
         button_frame = Frame(self.main_frame, width=780, height=100)
         button_frame.grid(row=6, column=0, padx=5, pady=5)
         button_exit = Button(button_frame, text="Skip", command=lambda:on_continue(i))
@@ -112,6 +134,9 @@ class Question:
         else:
             on_continue(i)
 
+def on_showhelp():
+    global help
+    help = help_page(root);
 
 def on_continueFirst():
     first_page.grid_remove()
@@ -128,6 +153,7 @@ def on_continue(i):
         pageList[len(pageList)-1].main_frame.grid_remove()
         last_page(root).tkraise()
 
+    
 root = Tk()
 
 root.minsize(800,400)
